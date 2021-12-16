@@ -1,12 +1,15 @@
 package cmd
 
-import "github.com/spf13/cobra"
+import (
+	"github.com/spf13/cobra"
+)
 
 func newGetCmd() *cobra.Command {
 	new := &cobra.Command{
-		Use:     "get",
+		Use:     "get [japanese text]",
 		Short:   "Get the naming",
-		Example: "codic get ファイルを作成する",
+		Example: "  codic get ファイルを作成する",
+		Args:    cobra.ExactArgs(1),
 		RunE:    execGetCmd,
 	}
 
@@ -14,5 +17,7 @@ func newGetCmd() *cobra.Command {
 }
 
 func execGetCmd(cmd *cobra.Command, args []string) error {
+	// text := args[0]
+
 	return nil
 }
