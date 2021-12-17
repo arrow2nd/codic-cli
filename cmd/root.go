@@ -1,7 +1,6 @@
 package cmd
 
 import (
-	"fmt"
 	"os"
 
 	"github.com/arrow2nd/godic"
@@ -34,6 +33,7 @@ func init() {
 	}
 }
 
+// Cmd コマンド
 type Cmd struct {
 	root *cobra.Command
 	api  *godic.Godic
@@ -62,8 +62,5 @@ func New() *Cmd {
 
 // Execute 実行
 func (c *Cmd) Execute() {
-	if err := c.root.Execute(); err != nil {
-		fmt.Fprintln(os.Stderr, err)
-		os.Exit(1)
-	}
+	c.root.Execute()
 }
