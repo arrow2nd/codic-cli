@@ -4,41 +4,12 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/arrow2nd/godic"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
 
-var rootCmd = newRootCmd()
-
-func newRootCmd() *cobra.Command {
-	root := &cobra.Command{
-		Use:          "codic",
-		Short:        "Unofficial client of \"codic\"",
-		Long:         "Unofficial client of the naming dictionary service \"codic\"",
-		Version:      Version,
-		SilenceUsage: true,
-	}
-
-	root.AddCommand(
-		newGetCmd(),
-	)
-
-	return root
-}
-
-// Execute 実行
-func Execute() {
-	if err := rootCmd.Execute(); err != nil {
-		fmt.Fprintln(os.Stderr, err)
-		os.Exit(1)
-	}
-}
-
 func init() {
-	cobra.OnInitialize(initConfig)
-}
-
-func initConfig() {
 	home, err := os.UserHomeDir()
 	if err != nil {
 		panic(err)
@@ -50,9 +21,9 @@ func initConfig() {
 	viper.SetConfigType("yaml")
 
 	// デフォルト値
-	viper.SetDefault("APIKey", "")
-	viper.SetDefault("Casing", "")
-	viper.SetDefault("AcronymStyle", LiteralStyle)
+	viper.SetDefault("apikey", "")
+	viper.SetDefault("casing", "")
+	viper.SetDefault("acronymstyle", LiteralStyle)
 
 	// ファイルが存在しない場合作成
 	viper.SafeWriteConfig()
@@ -60,5 +31,39 @@ func initConfig() {
 	// 設定ファイル読み込み
 	if err := viper.ReadInConfig(); err != nil {
 		panic(err)
+	}
+}
+
+type Cmd struct {
+	root *cobra.Command
+	api  *godic.Godic
+}
+
+// New 生成
+func New() *Cmd {
+	newCmd := &Cmd{
+		root: &cobra.Command{
+			Use:          "codic",
+			Short:        "Unofficial client of \"codic\"",
+			Long:         "Unofficial client of the naming dictionary service \"codic\"",
+			Version:      Version,
+			SilenceUsage: true,
+		},
+		api: godic.NewClient(viper.GetString("apikey")),
+	}
+
+	newCmd.root.AddCommand(
+		newCmd.newGetCmd(),
+		newCmd.newConfigCmd(),
+	)
+
+	return newCmd
+}
+
+// Execute 実行
+func (c *Cmd) Execute() {
+	if err := c.root.Execute(); err != nil {
+		fmt.Fprintln(os.Stderr, err)
+		os.Exit(1)
 	}
 }
