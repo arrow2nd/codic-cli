@@ -44,8 +44,8 @@ func New() *Cmd {
 	newCmd := &Cmd{
 		root: &cobra.Command{
 			Use:          "codic",
-			Short:        "Unofficial client of \"codic\"",
-			Long:         "Unofficial client of the naming dictionary service \"codic\"",
+			Short:        "Unofficial CLI client of codic",
+			Long:         "Unofficial CLI client of the naming dictionary service codic",
 			Version:      Version,
 			SilenceUsage: true,
 		},
