@@ -50,6 +50,6 @@ func (c *Cmd) execConfigAPICmd(cmd *cobra.Command, args []string) error {
 		return err
 	}
 
-	showSuccessMessage("Authentication completed")
+	showSuccessMessage("Authentication completed!")
 	return nil
 }

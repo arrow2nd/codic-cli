@@ -49,6 +49,6 @@ func (c *Cmd) execConfigCaseCmd(cmd *cobra.Command, args []string) error {
 		return err
 	}
 
-	showSuccessMessage("complete")
+	showSuccessMessage("Saved!")
 	return nil
 }

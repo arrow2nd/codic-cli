@@ -41,6 +41,6 @@ func (c *Cmd) execConfigPrefixCmd(cmd *cobra.Command, args []string) error {
 		return err
 	}
 
-	showSuccessMessage("complete")
+	showSuccessMessage("Saved!")
 	return nil
 }
