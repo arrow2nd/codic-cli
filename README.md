@@ -40,22 +40,14 @@ hello_world
 
 また、ネーミングの生成に失敗した場合でもそのまま出力します。
 
-### config
-
-#### api
-
-`config api`
+### config api
 
 API キーを設定します。
 
-#### case
-
-`config case`
+### config case
 
 デフォルトの名前付け規則の種類を設定します。
 
-#### prefix
+### config prefix
 
-`config prefix`
-
-デフォルトの接頭辞のスタイルを指定します。
+デフォルトの接頭辞のスタイルを設定します。
