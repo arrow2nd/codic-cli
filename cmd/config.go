@@ -3,13 +3,15 @@ package cmd
 import "github.com/spf13/cobra"
 
 func (c *Cmd) newConfigCmd() *cobra.Command {
-	new := &cobra.Command{
-		Use:     "config [japanese text]",
-		Short:   "Operate the configuration",
-		Example: "  config",
+	configCmd := &cobra.Command{
+		Use:   "config",
+		Short: "Operate the configuration",
 	}
 
-	new.AddCommand(c.newConfigAPICmd())
+	configCmd.AddCommand(
+		c.newConfigAPICmd(),
+		c.newConfigCaseCmd(),
+	)
 
-	return new
+	return configCmd
 }

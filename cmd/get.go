@@ -2,13 +2,13 @@ package cmd
 
 import (
 	"fmt"
-	"net/url"
 
+	"github.com/arrow2nd/godic"
 	"github.com/spf13/cobra"
 )
 
 func (c *Cmd) newGetCmd() *cobra.Command {
-	new := &cobra.Command{
+	getCmd := &cobra.Command{
 		Use:     "get [japanese text]",
 		Short:   "Get the naming",
 		Example: "  codic get ファイルを作成する",
@@ -16,15 +16,13 @@ func (c *Cmd) newGetCmd() *cobra.Command {
 		RunE:    c.execGetCmd,
 	}
 
-	return new
+	return getCmd
 }
 
 func (c *Cmd) execGetCmd(cmd *cobra.Command, args []string) error {
 	text := args[0]
 
-	v := url.Values{}
-	v.Add("text", text)
-
+	v := godic.CreateTranslateParam(text)
 	results, err := c.api.GetTranslate(v)
 	if err != nil {
 		return err

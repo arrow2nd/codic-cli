@@ -1,26 +1,55 @@
 package cmd
 
 import (
+	"fmt"
+
+	"github.com/arrow2nd/godic"
+	"github.com/manifoldco/promptui"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
 
 func (c *Cmd) newConfigAPICmd() *cobra.Command {
-	new := &cobra.Command{
-		Use:     "config [japanese text]",
-		Short:   "Operate the configuration",
-		Example: "  config",
-		Args:    cobra.ExactArgs(1),
-		RunE:    c.execConfigAPICmd,
+	apiCmd := &cobra.Command{
+		Use:   "api",
+		Short: "Register your API key",
+		Args:  cobra.NoArgs,
+		RunE:  c.execConfigAPICmd,
 	}
 
-	return new
+	return apiCmd
 }
 
 func (c *Cmd) execConfigAPICmd(cmd *cobra.Command, args []string) error {
-	apiKey := args[0]
+	prompt := promptui.Prompt{
+		Label:       "API Key",
+		HideEntered: true,
+		Validate: func(s string) error {
+			if len(s) == 0 {
+				return fmt.Errorf("too short")
+			}
+			return nil
+		},
+	}
 
-	viper.Set("APIKey", apiKey)
+	apiKey, err := prompt.Run()
+	if err != nil {
+		return err
+	}
 
+	g := godic.NewClient(apiKey)
+	params := godic.CreateTranslateParam("こんにちは世界")
+
+	// 有効なAPIキーかチェック
+	if _, err := g.GetTranslate(params); err != nil {
+		return fmt.Errorf("not a valid API key")
+	}
+
+	viper.Set("apikey", apiKey)
+	if err := viper.WriteConfig(); err != nil {
+		return err
+	}
+
+	showSuccessMessage("Authentication completed")
 	return nil
 }

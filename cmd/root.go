@@ -22,7 +22,7 @@ func init() {
 	// デフォルト値
 	viper.SetDefault("apikey", "")
 	viper.SetDefault("casing", "")
-	viper.SetDefault("acronymstyle", LiteralStyle)
+	viper.SetDefault("acronymstyle", godic.LiteralPrefix)
 
 	// ファイルが存在しない場合作成
 	viper.SafeWriteConfig()
