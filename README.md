@@ -2,6 +2,9 @@
 
 [codic](https://codic.jp/) をターミナルから利用する為の CLI ツール
 
+[![test](https://github.com/arrow2nd/codic-cli/actions/workflows/test.yml/badge.svg)](https://github.com/arrow2nd/codic-cli/actions/workflows/test.yml)
+[![release](https://github.com/arrow2nd/codic-cli/actions/workflows/release.yml/badge.svg)](https://github.com/arrow2nd/codic-cli/actions/workflows/release.yml)
+[![Go Report Card](https://goreportcard.com/badge/github.com/arrow2nd/codic-cli)](https://goreportcard.com/report/github.com/arrow2nd/codic-cli)
 ![GitHub all releases](https://img.shields.io/github/downloads/arrow2nd/codic-cli/total)
 [![GitHub license](https://img.shields.io/github/license/arrow2nd/codic-cli)](https://github.com/arrow2nd/codic-cli/blob/main/LICENSE)
 
