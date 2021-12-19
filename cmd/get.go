@@ -24,23 +24,22 @@ func (c *Cmd) newGetCmd() *cobra.Command {
 }
 
 func (c *Cmd) execGetCmd(cmd *cobra.Command, args []string) error {
-	text := args[0]
-	caseType, _ := cmd.Flags().GetString("case")
-	prefixStyle, _ := cmd.Flags().GetString("prefix")
-
-	caseType, err := caseList.GetValue(caseType)
+	caseName, _ := cmd.Flags().GetString("case")
+	caseValue, err := caseList.GetValue(caseName)
 	if err != nil {
 		return fmt.Errorf("case type is wrong, please specify one of [%s]", caseList.GetListItemsString())
 	}
 
-	prefixStyle, err = prefixList.GetValue(prefixStyle)
+	prefixName, _ := cmd.Flags().GetString("prefix")
+	prefixValue, err := prefixList.GetValue(prefixName)
 	if err != nil {
 		return fmt.Errorf("prefix style is wrong, please specify one of [%s]", prefixList.GetListItemsString())
 	}
 
+	text := args[0]
 	v := godic.CreateTranslateParam(text)
-	v.Add("casing", caseType)
-	v.Add("acronym_style", prefixStyle)
+	v.Add("casing", caseValue)
+	v.Add("acronym_style", prefixValue)
 
 	results, err := c.api.GetTranslate(v)
 	if err != nil {
@@ -48,6 +47,5 @@ func (c *Cmd) execGetCmd(cmd *cobra.Command, args []string) error {
 	}
 
 	fmt.Println(results[0].TranslatedText)
-
 	return nil
 }

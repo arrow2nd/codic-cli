@@ -10,14 +10,12 @@ import (
 )
 
 func (c *Cmd) newConfigAPICmd() *cobra.Command {
-	apiCmd := &cobra.Command{
+	return &cobra.Command{
 		Use:   "api",
 		Short: "Register your API key",
 		Args:  cobra.NoArgs,
 		RunE:  c.execConfigAPICmd,
 	}
-
-	return apiCmd
 }
 
 func (c *Cmd) execConfigAPICmd(cmd *cobra.Command, args []string) error {
