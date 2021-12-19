@@ -30,14 +30,12 @@ var caseList = []selectItem{
 }
 
 func (c *Cmd) newConfigCaseCmd() *cobra.Command {
-	caseCmd := &cobra.Command{
+	return &cobra.Command{
 		Use:   "case",
 		Short: "Set the case type",
 		Args:  cobra.NoArgs,
 		RunE:  c.execConfigCaseCmd,
 	}
-
-	return caseCmd
 }
 
 func (c *Cmd) execConfigCaseCmd(cmd *cobra.Command, args []string) error {

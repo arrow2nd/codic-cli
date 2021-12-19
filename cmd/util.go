@@ -34,10 +34,10 @@ func selectList(label string, items []selectItem) string {
 		Templates: templates,
 	}
 
-	_, result, err := prompt.Run()
+	idx, _, err := prompt.Run()
 	if err != nil {
 		return ""
 	}
 
-	return result
+	return items[idx].Value
 }
