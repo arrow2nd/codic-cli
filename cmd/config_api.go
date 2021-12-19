@@ -19,6 +19,9 @@ func (c *Cmd) newConfigAPICmd() *cobra.Command {
 }
 
 func (c *Cmd) execConfigAPICmd(cmd *cobra.Command, args []string) error {
+	fmt.Println("Enter the API key for codic.")
+	fmt.Println("If you don't have it, you can get it here. [ https://codic.jp/my/api_status ]")
+
 	prompt := promptui.Prompt{
 		Label:       "API Key",
 		HideEntered: true,

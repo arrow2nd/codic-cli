@@ -21,7 +21,7 @@ func init() {
 
 	// デフォルト値
 	viper.SetDefault("apikey", "")
-	viper.SetDefault("case", "")
+	viper.SetDefault("case", "space")
 	viper.SetDefault("prefix", godic.LiteralPrefix)
 
 	// ファイルが存在しない場合作成
@@ -62,5 +62,10 @@ func New() *Cmd {
 
 // Execute 実行
 func (c *Cmd) Execute() {
+	// APIキーが存在しなかったら 'config api' を実行する
+	if viper.GetString("apikey") == "" {
+		c.root.SetArgs([]string{"config", "api"})
+	}
+
 	c.root.Execute()
 }
