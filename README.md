@@ -8,6 +8,8 @@
 ![GitHub all releases](https://img.shields.io/github/downloads/arrow2nd/codic-cli/total)
 [![GitHub license](https://img.shields.io/github/license/arrow2nd/codic-cli)](https://github.com/arrow2nd/codic-cli/blob/main/LICENSE)
 
+![codic-cli](https://user-images.githubusercontent.com/44780846/146678773-5c518844-f5b9-4ada-a2b4-db3c50a02fc7.gif)
+
 ## インストール
 
 ### Homebrew
