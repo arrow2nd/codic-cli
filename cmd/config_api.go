@@ -34,7 +34,7 @@ func (c *Cmd) execConfigAPICmd(cmd *cobra.Command, args []string) error {
 
 	apiKey, err := prompt.Run()
 	if err != nil {
-		return err
+		return nil
 	}
 
 	g := godic.NewClient(apiKey)

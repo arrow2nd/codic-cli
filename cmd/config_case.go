@@ -1,31 +1,43 @@
 package cmd
 
 import (
+	"github.com/arrow2nd/codic-cli/list"
 	"github.com/arrow2nd/godic"
+
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
 
-var caseList = []selectItem{
+var caseList = list.List{
 	{
+		Name:    "pascal",
 		Value:   godic.PascalCase,
 		Example: "PascalCase",
 	},
 	{
+		Name:    "camel",
 		Value:   godic.CamelCase,
 		Example: "camelCase",
 	},
 	{
+		Name:    "snake",
 		Value:   godic.SnakeCase,
 		Example: "snake_case",
 	},
 	{
+		Name:    "screaming",
 		Value:   godic.ScreamingSnakeCase,
 		Example: "SNAKE_CASE",
 	},
 	{
+		Name:    "kebab",
 		Value:   godic.KebabCase,
-		Example: "kabab-case",
+		Example: "kebab-case",
+	},
+	{
+		Name:    "space",
+		Value:   "",
+		Example: "space case",
 	},
 }
 
@@ -39,12 +51,12 @@ func (c *Cmd) newConfigCaseCmd() *cobra.Command {
 }
 
 func (c *Cmd) execConfigCaseCmd(cmd *cobra.Command, args []string) error {
-	result := selectList("Case type", caseList)
+	result := caseList.SelectList("Case type")
 	if result == "" {
 		return nil
 	}
 
-	viper.Set("casing", result)
+	viper.Set("case", result)
 	if err := viper.WriteConfig(); err != nil {
 		return err
 	}
