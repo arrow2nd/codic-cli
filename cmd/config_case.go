@@ -44,14 +44,14 @@ var caseList = list.List{
 func (c *Cmd) newConfigCaseCmd() *cobra.Command {
 	return &cobra.Command{
 		Use:   "case",
-		Short: "Set the case type",
+		Short: "Set the default case type",
 		Args:  cobra.NoArgs,
 		RunE:  c.execConfigCaseCmd,
 	}
 }
 
 func (c *Cmd) execConfigCaseCmd(cmd *cobra.Command, args []string) error {
-	result := caseList.SelectList("Case type")
+	result := caseList.SelectList("Default Case Type?")
 	if result == "" {
 		return nil
 	}
