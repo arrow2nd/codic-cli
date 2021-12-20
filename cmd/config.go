@@ -12,6 +12,7 @@ func (c *Cmd) newConfigCmd() *cobra.Command {
 		c.newConfigAPICmd(),
 		c.newConfigCaseCmd(),
 		c.newConfigPrefixCmd(),
+		c.newConfigListCmd(),
 	)
 
 	return configCmd
