@@ -28,14 +28,14 @@ var prefixList = list.List{
 func (c *Cmd) newConfigPrefixCmd() *cobra.Command {
 	return &cobra.Command{
 		Use:   "prefix",
-		Short: "Set the prefix style",
+		Short: "Set the default prefix style",
 		Args:  cobra.NoArgs,
 		RunE:  c.execConfigPrefixCmd,
 	}
 }
 
 func (c *Cmd) execConfigPrefixCmd(cmd *cobra.Command, args []string) error {
-	result := prefixList.SelectList("Prefix style")
+	result := prefixList.SelectList("Default Prefix Style?")
 	if result == "" {
 		return nil
 	}
