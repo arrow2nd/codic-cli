@@ -30,7 +30,7 @@ require (
 
 require (
 	github.com/chzyer/readline v1.5.0 // indirect
-	github.com/fatih/color v1.14.0
+	github.com/fatih/color v1.14.1
 	github.com/manifoldco/promptui v0.9.0
 	gopkg.in/ini.v1 v1.67.0 // indirect
 )
